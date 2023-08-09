@@ -12,17 +12,27 @@ class BaseModel:
     Task 3: The BaseModel class defines all common attributes/methods
         for other classes.
     """
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """
         Task 3: The constructor for the BaseModel class that initializes
             the public instances
             a) id
             b) created_at
             c) updated_at
+        Task 4: Updating the constructor arguments to account for *args
+            and kwargs. kwargs if present would be used to create a new
+            instance of the BaseModel instead.
         """
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
+        if kwargs:
+            kwargs.pop('__class__', None)
+            kwargs['created_at'] = datetime.strptime(kwargs['created_at'], "%Y-%m-%dT%H:%M:%S.%f")
+            kwargs['updated_at'] = datetime.strptime(kwargs['updated_at'], "%Y-%m-%dT%H:%M:%S.%f")
+            for key, val in kwargs.items():
+                setattr(self, key, val)
+        else:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
 
     def __str__(self):
         """Task 3: overriding the toString method"""
