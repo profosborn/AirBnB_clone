@@ -1,6 +1,9 @@
 #!/usr/bin/python3
 """The module contains the HBNBCommand class"""
 import cmd
+import ast
+from models import storage
+from models.base_model import BaseModel
 
 
 class HBNBCommand(cmd.Cmd):
@@ -9,6 +12,98 @@ class HBNBCommand(cmd.Cmd):
         intepreter with the custom prompt (hbnb)
     """
     prompt = "(hbnb) "
+    valid_classes = ["BaseModel"]
+
+    def do_create(self, line):
+        if line:
+            match line:
+                case "BaseModel":
+                    new_model = BaseModel()
+                    new_model.save()
+                    print(new_model.id)
+                case _:
+                    print("** class doesn't exist **")
+        else:
+            print("** class name missing **")
+
+    def do_show(self, line):
+        if line:
+            args = line.split()
+            if args[0] not in HBNBCommand.valid_classes:
+                print("** class doesn't exist **")
+            elif len(args) < 2:
+                print("** instance id missing **")
+            else:
+                allobjects = storage.all()
+                key = args[0] + "." + args[1]
+                found = allobjects.get(key, None)
+                if found:
+                    print(found)
+                else:
+                    print("** no instance found **")
+        else:
+            print("** class name missing **")
+
+    def do_destroy(self, line):
+        if line:
+            args = line.split()
+            if args[0] not in HBNBCommand.valid_classes:
+                print("** class doesn't exist **")
+            elif len(args) < 2:
+                print("** instance id missing **")
+            else:
+                allobjects = storage.all()
+                key = args[0] + "." + args[1]
+                found = allobjects.get(key, None)
+                if found:
+                    deleted = allobjects.pop(key)
+                    storage.save()
+                else:
+                    print("** no instance found **")
+        else:
+            print("** class name missing **")
+
+    def do_all(self, line):
+        allobjects = storage.all()
+        if line:
+            args = line.split()
+            if args[0] in HBNBCommand.valid_classes:
+                classlist = [str(val) for key, val in allobjects.items()
+                        if key.startswith(args[0])]
+                print(classlist)
+            else:
+                print("** class doesn't exist **")
+        else:
+            allclass = [str(val) for val in allobjects.values()]
+            print(allclass)
+
+    def do_update(self, line):
+        """
+        Updates an instance based on the class name and id by adding or updating
+        attribute (save the changes into the JSON file)
+        """
+        if line:
+            args = line.split()
+            if args[0] not in HBNBCommand.valid_classes:
+                print("** class doesn't exist **")
+            elif len(args) < 2:
+                print("** instance id missing **")
+            else:
+                allobjects = storage.all()
+                key = args[0] + "." + args[1]
+                found = allobjects.get(key, None)
+                if found:
+                    if len(args) < 3:
+                        print("** attribute name missing **")
+                    elif len(args) < 4:
+                        print("** value missing **")
+                    else:
+                        setattr(found, args[2], ast.literal_eval(args[3].strip()))
+                        found.save()
+                else:
+                    print("** no instance found **")
+        else:
+            print("** class name missing **")
 
     def do_quit(self, arg):
         """Quit command to exit the program\n"""
