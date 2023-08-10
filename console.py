@@ -9,6 +9,7 @@ from models.state import State
 from models.city import City
 from models.amenity import Amenity
 from models.place import Place
+from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
@@ -24,6 +25,7 @@ class HBNBCommand(cmd.Cmd):
         "City",
         "Amenity",
         "Place",
+        "Review",
     ]
 
     def do_create(self, line):
@@ -51,6 +53,10 @@ class HBNBCommand(cmd.Cmd):
                     print(new_model.id)
                 case "Place":
                     new_model = Place()
+                    new_model.save()
+                    print(new_model.id)
+                case "Review":
+                    new_model = Review()
                     new_model.save()
                     print(new_model.id)
                 case _:
