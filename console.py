@@ -4,6 +4,7 @@ import cmd
 import ast
 from models import storage
 from models.base_model import BaseModel
+from models.user import User
 
 
 class HBNBCommand(cmd.Cmd):
@@ -12,13 +13,17 @@ class HBNBCommand(cmd.Cmd):
         intepreter with the custom prompt (hbnb)
     """
     prompt = "(hbnb) "
-    valid_classes = ["BaseModel"]
+    valid_classes = ["BaseModel", "User"]
 
     def do_create(self, line):
         if line:
             match line:
                 case "BaseModel":
                     new_model = BaseModel()
+                    new_model.save()
+                    print(new_model.id)
+                case "User":
+                    new_model = User()
                     new_model.save()
                     print(new_model.id)
                 case _:
