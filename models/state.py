@@ -7,7 +7,7 @@ class State(BaseModel):
     """
     Task 9.
     The class is a subclass of the Baseodel class with the
-        additional attributes defined
+        additional public class attributes defined
         a) name: string-empty string
     """
     name = ''
