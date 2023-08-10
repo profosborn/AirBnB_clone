@@ -6,6 +6,7 @@ from models import storage
 from models.base_model import BaseModel
 from models.user import User
 from models.state import State
+from models.city import City
 
 
 class HBNBCommand(cmd.Cmd):
@@ -14,7 +15,12 @@ class HBNBCommand(cmd.Cmd):
         intepreter with the custom prompt (hbnb)
     """
     prompt = "(hbnb) "
-    valid_classes = ["BaseModel", "User", "State"]
+    valid_classes = [
+        "BaseModel",
+        "User",
+        "State",
+        "City"
+    ]
 
     def do_create(self, line):
         if line:
@@ -29,6 +35,10 @@ class HBNBCommand(cmd.Cmd):
                     print(new_model.id)
                 case "State":
                     new_model = State()
+                    new_model.save()
+                    print(new_model.id)
+                case "City":
+                    new_model = City()
                     new_model.save()
                     print(new_model.id)
                 case _:
