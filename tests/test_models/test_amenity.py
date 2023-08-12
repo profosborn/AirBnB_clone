@@ -78,7 +78,7 @@ class TestAmenity(unittest.TestCase):
 
     def test_amenity_created_at_attr_are_different(self):
         """tests that the Amenity created_at attrs are different"""
-        self.assertLess(Amentiy().created_at, Amenity().created_at)
+        self.assertLess(Amenity().created_at, Amenity().created_at)
 
     def test_amenity_updated_at_attr_are_different(self):
         """tests that the Amenity updated_at attrs are different"""
