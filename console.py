@@ -15,11 +15,14 @@ from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
+
     """
         The class contains the entry point of the command
         intepreter with the custom prompt (hbnb)
     """
+
     prompt = '(hbnb) '
+
     valid_classes = [
         "BaseModel",
         "User",
