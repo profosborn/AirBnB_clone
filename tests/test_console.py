@@ -733,7 +733,9 @@ class TestHBNBCommand(unittest.TestCase):
     def test_console_destroy_cmd_for_BaseModel_class_with_invalid_id(self):
         """tests the destroy cmd for the BaseModel class with invalid id"""
         with patch("sys.stdout", new=StringIO()) as f:
-            self.assertFalse(HBNBCommand().onecmd("destroy BaseModel 12121212"))
+            self.assertFalse(
+                HBNBCommand().onecmd("destroy BaseModel 12121212")
+            )
             self.assertEqual(
                 TestHBNBCommand.missing_instance,
                 f.getvalue().strip()
@@ -793,13 +795,15 @@ class TestHBNBCommand(unittest.TestCase):
                 f.getvalue().strip()
             )
 
-    def test_console_destroy_dot_notation_cmd_for_BaseModel_with_invalid_id(self):
+    def test_consol_destroy_dot_notatn_cmd_for_BaseModel_with_invalid_id(self):
         """
             tests the destroy dot notation cmd for the BaseModel class
             with invalid id
         """
         with patch("sys.stdout", new=StringIO()) as f:
-            self.assertFalse(HBNBCommand().onecmd("BaseModel.destroy(12121212)"))
+            self.assertFalse(
+                HBNBCommand().onecmd("BaseModel.destroy(12121212)")
+            )
             self.assertEqual(
                 TestHBNBCommand.missing_instance,
                 f.getvalue().strip()
@@ -841,7 +845,7 @@ class TestHBNBCommand(unittest.TestCase):
                 f.getvalue().strip()
             )
 
-    def test_console_destroy_dot_notation_cmd_for_Amenity_with_invalid_id(self):
+    def test_console_destroy_dot_notatn_cmd_for_Amenity_with_invalid_id(self):
         """
             tests the destroy dot notation cmd for the Amenity class
             with invalid id

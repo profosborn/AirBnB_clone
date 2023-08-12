@@ -43,11 +43,13 @@ class TestState(unittest.TestCase):
         self.assertEqual(str, type(State().id))
 
     def test_state_created_at_is_datetime(self):
-        """test that the State attribute created_at is an instance of datetime"""
+        """test that the State attribute created_at is an instance
+        of datetime"""
         self.assertEqual(datetime, type(State().created_at))
 
     def test_state_updated_at_is_datetime(self):
-        """test that the State attribute updated_at is an instance of datetime"""
+        """test that the State attribute updated_at is an
+        instance of datetime"""
         self.assertEqual(datetime, type(State().updated_at))
 
     def test_state_name_attr_is_public_class_attr(self):
@@ -166,5 +168,6 @@ class TestState(unittest.TestCase):
         with self.assertRaises(TypeError):
             model.to_dict(None)
 
-if __name__=='__main__':
+
+if __name__ == '__main__':
     unittest.main()
