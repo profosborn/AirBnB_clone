@@ -34,37 +34,14 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, line):
         """Usage: create <classname>"""
         if line:
-            match line:
-                case "BaseModel":
-                    new_model = BaseModel()
-                    new_model.save()
-                    print(new_model.id)
-                case "User":
-                    new_model = User()
-                    new_model.save()
-                    print(new_model.id)
-                case "State":
-                    new_model = State()
-                    new_model.save()
-                    print(new_model.id)
-                case "City":
-                    new_model = City()
-                    new_model.save()
-                    print(new_model.id)
-                case "Amenity":
-                    new_model = Amenity()
-                    new_model.save()
-                    print(new_model.id)
-                case "Place":
-                    new_model = Place()
-                    new_model.save()
-                    print(new_model.id)
-                case "Review":
-                    new_model = Review()
-                    new_model.save()
-                    print(new_model.id)
-                case _:
-                    print("** class doesn't exist **")
+            if line not in HBNBCommand.valid_classes:
+                print("** class doesn't exist **")
+                return
+
+            cls = eval(line.strip())
+            model = cls()
+            print(model.id)
+            model.save()
         else:
             print("** class name missing **")
 
