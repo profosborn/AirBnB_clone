@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""defines all unnittest tests for the model/user module"""
+"""defines all unnittest tests for the models/user module"""
 import unittest
 import os
 import models
@@ -9,7 +9,7 @@ from models.user import User
 from models.base_model import BaseModel
 
 
-class TestState(unittest.TestCase):
+class TestUser(unittest.TestCase):
     """unittest tests for the User model class"""
 
     def test_style_check(self):
@@ -21,7 +21,7 @@ class TestState(unittest.TestCase):
     @classmethod
     def setUp(self):
         try:
-            os.rename("file.json", "temp.json")
+            os.rename("file.json", "tmp.json")
         except IOError:
             pass
 
@@ -106,7 +106,6 @@ class TestState(unittest.TestCase):
             User(id=None, created_at=None, updated_at=None)
 
     def test_user_save_method_once(self):
-        """"""
         model = User()
         updated_at_1 = model.updated_at
         model.save()
