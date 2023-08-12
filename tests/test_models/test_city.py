@@ -21,7 +21,7 @@ class TestCity(unittest.TestCase):
     @classmethod
     def setUp(self):
         try:
-            os.rename("file.json", "temp.json")
+            os.rename("file.json", "tmp.json")
         except IOError:
             pass
 
