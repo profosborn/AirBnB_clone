@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Unittest"""
+"""defines all unnittest tests for the models/state module"""
 import unittest
 import os
 import models
@@ -10,19 +10,32 @@ from models.base_model import BaseModel
 
 
 class TestState(unittest.TestCase):
-
-    @classmethod
-    def setUp(self):
-        try:
-            os.rename("tmp.json", "file.json")
-        except IOError:
-            pass
+    """unittest tests for the State model class"""
 
     def test_style_check(self):
         """Test for pep8 style"""
         style = pep8.StyleGuide(quiet=True)
         p = style.check_files(['models/state.py'])
         self.assertEqual(p.total_errors, 0, 'fix pep8')
+
+    @classmethod
+    def setUp(self):
+        try:
+            os.rename("file.json", "tmp.json")
+        except IOError:
+            pass
+
+    @classmethod
+    def tearDown(self):
+        try:
+            os.remove("file.json")
+        except IOError:
+            pass
+
+        try:
+            os.rename("tmp.json", "file.json")
+        except IOError:
+            pass
 
     def test_state_is_subclass_of_BaseModel(self):
         self.assertTrue(issubclass(State().__class__, BaseModel), True)
@@ -64,11 +77,11 @@ class TestState(unittest.TestCase):
         self.assertNotEqual(State().id, State().id)
 
     def test_state_created_at_attr_are_different(self):
-        """tests the the State created_at attrs are different"""
+        """tests that the State created_at attrs are different"""
         self.assertLess(State().created_at, State().created_at)
 
     def test_state_updated_at_attr_are_different(self):
-        """tests the the State updated_at attrs are different"""
+        """tests that the State updated_at attrs are different"""
         self.assertLess(State().updated_at, State().updated_at)
 
     def test_unused_args(self):
@@ -99,7 +112,6 @@ class TestState(unittest.TestCase):
         self.assertLess(updated_at_1, updated_at_2)
 
     def test_state_save_method_twice(self):
-        """"""
         model = State()
         updated_at_1 = model.updated_at
         model.save()
