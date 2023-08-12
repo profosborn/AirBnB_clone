@@ -249,7 +249,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_EOF(self, arg):
         """quits the command interpreter"""
-        print
+        print("")
         return True
 
     def emptyline(self):
