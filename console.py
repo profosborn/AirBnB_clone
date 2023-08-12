@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 """The module contains the HBNBCommand class"""
+
+
 import cmd
 import ast
 from models import storage
