@@ -50,6 +50,6 @@ class FileStorage:
             for key, val in paydict.items():
                 classname, obj_id = key.split(".")
                 cls = eval(classname)
-                FileStorage.__objects[key] = cls(**val)
+                self.new(cls(**val))
         except FileNotFoundError:
             return
