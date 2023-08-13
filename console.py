@@ -203,7 +203,7 @@ class HBNBCommand(cmd.Cmd):
             new_attrs = args.split(',', 1)
 
             if len(new_attrs) < 2:
-                print("** attribute name missing **")
+                print("** no instance found **")
                 return
 
             if new_attrs[1].strip()[0] == '{':
