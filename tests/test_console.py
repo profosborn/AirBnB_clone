@@ -1088,3 +1088,40 @@ class TestHBNBCommand(unittest.TestCase):
             self.assertIn("Review", f.getvalue().strip())
 
 
+    def test_console_all_cmds_for_every_class(self):
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("create BaseModel"))
+            self.assertFalse(HBNBCommand().onecmd("create User"))
+            self.assertFalse(HBNBCommand().onecmd("create State"))
+            self.assertFalse(HBNBCommand().onecmd("create Place"))
+            self.assertFalse(HBNBCommand().onecmd("create City"))
+            self.assertFalse(HBNBCommand().onecmd("create Amenity"))
+            self.assertFalse(HBNBCommand().onecmd("create Review"))
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd('all BaseModel'))
+            self.assertIn("BaseModel", f.getvalue().strip())
+            self.assertNotIn("User", f.getvalue().strip())
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd('all User'))
+            self.assertIn("User", f.getvalue().strip())
+            self.assertNotIn("State", f.getvalue().strip())
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd('all State'))
+            self.assertIn("State", f.getvalue().strip())
+            self.assertNotIn("City", f.getvalue().strip())
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd('all City'))
+            self.assertIn("City", f.getvalue().strip())
+            self.assertNotIn("Place", f.getvalue().strip())
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd('all Place'))
+            self.assertIn("Place", f.getvalue().strip())
+            self.assertNotIn("Amenity", f.getvalue().strip())
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd('all Amenity'))
+            self.assertIn("Amenity", f.getvalue().strip())
+            self.assertNotIn("Review", f.getvalue().strip())
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd('all Review'))
+            self.assertIn("Review", f.getvalue().strip())
+            self.assertNotIn("BaseModel", f.getvalue().strip())
