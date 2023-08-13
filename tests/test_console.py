@@ -1794,6 +1794,42 @@ class TestHBNBCommand(unittest.TestCase):
             res_dict = storage.all()[f'Review.{key_id}'].__dict__
             self.assertEqual("attr_value", res_dict['attr_name'])
 
+    def test_console_help_quit_cmd(self):
+        text = "Quit command to exit the program"
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("help quit"))
+            self.assertEqual(text, f.getvalue().strip())
+
+    def test_console_help_create_cmd(self):
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("help create"))
+            self.assertIsNotNone(f.getvalue().strip())
+
+    def test_console_help_EOF_cmd(self):
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("help EOF"))
+            self.assertIsNotNone(f.getvalue().strip())
+
+    def test_console_help_show_cmd(self):
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("help show"))
+            self.assertIsNotNone(f.getvalue().strip())
+
+    def test_console_help_destroy_cmd(self):
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("help destroy"))
+            self.assertIsNotNone(f.getvalue().strip())
+
+    def test_console_help_all_cmd(self):
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("help all"))
+            self.assertIsNotNone(f.getvalue().strip())
+
+    def test_console_help_create_cmd(self):
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("help"))
+            self.assertIsNotNone(f.getvalue().strip())
+
 
 class TestHBNBCommandCountCmd(unittest.TestCase):
     """unittest tests for the count command of the HBNB
