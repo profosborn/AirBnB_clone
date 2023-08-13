@@ -1235,3 +1235,47 @@ class TestHBNBCommand(unittest.TestCase):
                 TestHBNBCommand.missing_id,
                 f.getvalue().strip()
             )
+
+    def test_update_dot_notation_cmd_with_missing_id(self):
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("BaseModel.update()"))
+            self.assertEqual(
+                TestHBNBCommand.missing_id,
+                f.getvalue().strip()
+            )
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("User.update()"))
+            self.assertEqual(
+                TestHBNBCommand.missing_id,
+                f.getvalue().strip()
+            )
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("State.update()"))
+            self.assertEqual(
+                TestHBNBCommand.missing_id,
+                f.getvalue().strip()
+            )
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("City.update()"))
+            self.assertEqual(
+                TestHBNBCommand.missing_id,
+                f.getvalue().strip()
+            )
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("Amenity.update()"))
+            self.assertEqual(
+                TestHBNBCommand.missing_id,
+                f.getvalue().strip()
+            )
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("Place.update()"))
+            self.assertEqual(
+                TestHBNBCommand.missing_id,
+                f.getvalue().strip()
+            )
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("Review.update()"))
+            self.assertEqual(
+                TestHBNBCommand.missing_id,
+                f.getvalue().strip()
+            )
