@@ -196,6 +196,7 @@ class HBNBCommand(cmd.Cmd):
         args = do_method[1][:-1]
 
         if do_method[0] == 'update':
+
             if (len(args) < 1):
                 print("** instance id missing **")
                 return
@@ -203,7 +204,12 @@ class HBNBCommand(cmd.Cmd):
             new_attrs = args.split(',', 1)
 
             if len(new_attrs) < 2:
-                print("** no instance found **")
+                key_id = f'{commands[0].strip()}.{new_attrs[0].strip()}'
+                found = storage.all().get(key_id, None)
+                if found:
+                    print("** attribute name missing **")
+                else:
+                    print("** no instance found **")
                 return
 
             if new_attrs[1].strip()[0] == '{':
