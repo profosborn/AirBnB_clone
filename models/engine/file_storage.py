@@ -43,7 +43,7 @@ class FileStorage:
             deserializes the JSON file to __objects
             (only if the JSON file (__file_path) exits otherwise do nothing
         """
-        if os.path.isfile(FileStorage.__file_path):
+        try:
             with open(FileStorage.__file_path, "r") as f:
                 payload = f.read()
             paydict = json.loads(payload)
@@ -51,3 +51,5 @@ class FileStorage:
                 classname, obj_id = key.split(".")
                 cls = eval(classname)
                 FileStorage.__objects[key] = cls(**val)
+        except FileNotFoundError:
+            return
