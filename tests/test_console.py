@@ -957,3 +957,73 @@ class TestHBNBCommand(unittest.TestCase):
             cmd = f"destroy Review {key_id}"
             self.assertFalse(HBNBCommand().onecmd(cmd))
             self.assertNotIn(found, storage.all())
+
+    def test_destroy_dot_notaton_cmd_for_BaseModel_class(self):
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("create BaseModel"))
+            key_id = f.getvalue().strip()
+        with patch("sys.stdout", new=StringIO()) as f:
+            found = storage.all()[f'BaseModel.{key_id}']
+            cmd = f"BaseModel.destroy({key_id})"
+            self.assertFalse(HBNBCommand().onecmd(cmd))
+            self.assertNotIn(found, storage.all())
+
+    def test_destroy_dot_notaton_cmd_for_User_class(self):
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("create User"))
+            key_id = f.getvalue().strip()
+        with patch("sys.stdout", new=StringIO()) as f:
+            found = storage.all()[f'User.{key_id}']
+            cmd = f"User.destroy({key_id})"
+            self.assertFalse(HBNBCommand().onecmd(cmd))
+            self.assertNotIn(found, storage.all())
+
+    def test_destroy_dot_notaton_cmd_for_State_class(self):
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("create State"))
+            key_id = f.getvalue().strip()
+        with patch("sys.stdout", new=StringIO()) as f:
+            found = storage.all()[f'State.{key_id}']
+            cmd = f"State.destroy({key_id})"
+            self.assertFalse(HBNBCommand().onecmd(cmd))
+            self.assertNotIn(found, storage.all())
+
+    def test_destroy_dot_notaton_cmd_for_Place_class(self):
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("create Place"))
+            key_id = f.getvalue().strip()
+        with patch("sys.stdout", new=StringIO()) as f:
+            found = storage.all()[f'Place.{key_id}']
+            cmd = f"Place.destroy({key_id})"
+            self.assertFalse(HBNBCommand().onecmd(cmd))
+            self.assertNotIn(found, storage.all())
+
+    def test_destroy_dot_notaton_cmd_for_City_class(self):
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("create City"))
+            key_id = f.getvalue().strip()
+        with patch("sys.stdout", new=StringIO()) as f:
+            found = storage.all()[f'City.{key_id}']
+            cmd = f"City.destroy({key_id})"
+            self.assertFalse(HBNBCommand().onecmd(cmd))
+            self.assertNotIn(found, storage.all())
+
+    def test_destroy_dot_notaton_cmd_for_Amenity_class(self):
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("create Amenity"))
+            key_id = f.getvalue().strip()
+        with patch("sys.stdout", new=StringIO()) as f:
+            found = storage.all()[f'Amenity.{key_id}']
+            cmd = f"Amenity.destroy({key_id})"
+            self.assertFalse(HBNBCommand().onecmd(cmd))
+            self.assertNotIn(found, storage.all())
+
+    def test_destroy_dot_notaton_cmd_for_Review_class(self):
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("create Review"))
+            key_id = f.getvalue().strip()
+        with patch("sys.stdout", new=StringIO()) as f:
+            found = storage.all()[f'Review.{key_id}']
+            cmd = f"Review.destroy({key_id})"
+            self.assertFalse(HBNBCommand().onecmd(cmd))
+            self.assertNotIn(found, storage.all())
