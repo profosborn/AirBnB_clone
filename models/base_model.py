@@ -24,7 +24,7 @@ class BaseModel:
             and kwargs. kwargs if present would be used to create a new
             instance of the BaseModel instead.
         """
-        if kwargs:
+        if kwargs and len(kwargs) > 0:
             kwargs.pop('__class__', None)
             kwargs['created_at'] = datetime.strptime(
                     kwargs['created_at'],
