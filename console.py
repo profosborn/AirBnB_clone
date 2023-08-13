@@ -197,7 +197,7 @@ class HBNBCommand(cmd.Cmd):
 
         if do_method[0] == 'update':
             if (len(args) < 1):
-                print("** no instance found **")
+                print("** instance id missing **")
                 return
 
             new_attrs = args.split(',', 1)
