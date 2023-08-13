@@ -218,7 +218,6 @@ class HBNBCommand(cmd.Cmd):
                 args = args.strip().replace(',', '')
                 new_line = "{} {}".format(commands[0], args)
                 new_line = new_line.replace('"', '')
-                print(new_line)
                 return self.do_update(new_line)
         else:
             new_line = '{} {}'.format(commands[0], args)
