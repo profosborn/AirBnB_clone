@@ -45,11 +45,10 @@ class FileStorage:
         """
         try:
             with open(FileStorage.__file_path, "r") as f:
-                payload = f.read()
-            paydict = json.loads(payload)
-            for key, val in paydict.items():
-                classname, obj_id = key.split(".")
-                cls = eval(classname)
-                self.new(cls(**val))
+                paydict = json.load(f)
+                for key, val in paydict.items():
+                    classname = key.split(".")[0]
+                    cls = eval(classname)
+                    self.new(cls(**val))
         except FileNotFoundError:
             return
