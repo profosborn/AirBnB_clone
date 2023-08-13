@@ -1793,3 +1793,76 @@ class TestHBNBCommand(unittest.TestCase):
             self.assertFalse(HBNBCommand().onecmd(cmdin))
             res_dict = storage.all()[f'Review.{key_id}'].__dict__
             self.assertEqual("attr_value", res_dict['attr_name'])
+
+
+class TestHBNBCommandCountCmd(unittest.TestCase):
+    """unittest tests for the count command of the HBNB
+        commmand interpreter"""
+
+    @classmethod
+    def setUp(self):
+        try:
+            os.rename("file.json", "tmp.json")
+        except IOError:
+            pass
+        FileStorage.__FileStorage__objects = {}
+
+    @classmethod
+    def tearDown(self):
+        try:
+            os.remove("file.json")
+        except IOError:
+            pass
+        try:
+            os.rename("tmp.json", "file.json")
+        except IOError:
+            pass
+
+    def test_console_count_dot_notation_cmd_with_invalid_class(self):
+        missing_class = "** class doesn't exist **"
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("MyModel.count()"))
+            self.assertEqual(missing_class, f.getvalue().strip())
+
+    def test_console_count_dot_notation_cmd_with_valid_class(self):
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("create BaseModel"))
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("BaseModel.count()"))
+            self.assertEqual("14", f.getvalue().strip())
+
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("create User"))
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("User.count()"))
+            self.assertEqual("15", f.getvalue().strip())
+
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("create State"))
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("State.count()"))
+            self.assertEqual("14", f.getvalue().strip())
+
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("create City"))
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("City.count()"))
+            self.assertEqual("14", f.getvalue().strip())
+
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("create Amenity"))
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("Amenity.count()"))
+            self.assertEqual("14", f.getvalue().strip())
+
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("create Place"))
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("Place.count()"))
+            self.assertEqual("14", f.getvalue().strip())
+
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("create Review"))
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("Review.count()"))
+            self.assertEqual("14", f.getvalue().strip())
