@@ -1087,7 +1087,6 @@ class TestHBNBCommand(unittest.TestCase):
             self.assertFalse(HBNBCommand().onecmd('Review.all()'))
             self.assertIn("Review", f.getvalue().strip())
 
-
     def test_console_all_cmds_for_every_class(self):
         with patch("sys.stdout", new=StringIO()) as f:
             self.assertFalse(HBNBCommand().onecmd("create BaseModel"))
@@ -1326,7 +1325,7 @@ class TestHBNBCommand(unittest.TestCase):
 
     def test_update_dot_notation_cmd_with_invalid_id(self):
         with patch("sys.stdout", new=StringIO()) as f:
-            self.assertFalse(HBNBCommand().onecmd("BaseModel.update(12121212)"))
+            self.assertFalse(HBNBCommand().onecmd("BaseModel.update(121212)"))
             self.assertEqual(
                 TestHBNBCommand.missing_instance,
                 f.getvalue().strip()
