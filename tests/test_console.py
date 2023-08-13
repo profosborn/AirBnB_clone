@@ -1656,3 +1656,140 @@ class TestHBNBCommand(unittest.TestCase):
                 TestHBNBCommand.missing_value,
                 f.getvalue().strip()
             )
+
+    def test_console_update_cmd_with_valid_args(self):
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("create BaseModel"))
+            key_id = f.getvalue().strip()
+            cmdin = f'update BaseModel {key_id} attr_name attr_value'
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd(cmdin))
+            res_dict = storage.all()[f'BaseModel.{key_id}'].__dict__
+            self.assertEqual("attr_value", res_dict['attr_name'])
+
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("create User"))
+            key_id = f.getvalue().strip()
+            cmdin = f'update User {key_id} attr_name attr_value'
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd(cmdin))
+            res_dict = storage.all()[f'User.{key_id}'].__dict__
+            self.assertEqual("attr_value", res_dict['attr_name'])
+
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("create State"))
+            key_id = f.getvalue().strip()
+            cmdin = f'update State {key_id} attr_name attr_value'
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd(cmdin))
+            res_dict = storage.all()[f'State.{key_id}'].__dict__
+            self.assertEqual("attr_value", res_dict['attr_name'])
+
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("create City"))
+            key_id = f.getvalue().strip()
+            cmdin = f'update City {key_id} attr_name attr_value'
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd(cmdin))
+            res_dict = storage.all()[f'City.{key_id}'].__dict__
+            self.assertEqual("attr_value", res_dict['attr_name'])
+
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("create User"))
+            key_id = f.getvalue().strip()
+            cmdin = f'update User {key_id} attr_name attr_value'
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd(cmdin))
+            res_dict = storage.all()[f'User.{key_id}'].__dict__
+            self.assertEqual("attr_value", res_dict['attr_name'])
+
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("create Amenity"))
+            key_id = f.getvalue().strip()
+            cmdin = f'update Amenity {key_id} attr_name attr_value'
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd(cmdin))
+            res_dict = storage.all()[f'Amenity.{key_id}'].__dict__
+            self.assertEqual("attr_value", res_dict['attr_name'])
+
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("create Place"))
+            key_id = f.getvalue().strip()
+            cmdin = f'update Place {key_id} attr_name attr_value'
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd(cmdin))
+            res_dict = storage.all()[f'Place.{key_id}'].__dict__
+            self.assertEqual("attr_value", res_dict['attr_name'])
+
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("create Review"))
+            key_id = f.getvalue().strip()
+            cmdin = f'update Review {key_id} attr_name attr_value'
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd(cmdin))
+            res_dict = storage.all()[f'Review.{key_id}'].__dict__
+            self.assertEqual("attr_value", res_dict['attr_name'])
+
+    def test_console_update_dot_notation_cmd_with_valid_args(self):
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("create BaseModel"))
+            key_id = f.getvalue().strip()
+            cmdin = f'BaseModel.update({key_id}, attr_name, attr_value)'
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd(cmdin))
+            res_dict = storage.all()[f'BaseModel.{key_id}'].__dict__
+            self.assertEqual("attr_value", res_dict['attr_name'])
+
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("create User"))
+            key_id = f.getvalue().strip()
+            cmdin = f'User.update({key_id}, attr_name, attr_value)'
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd(cmdin))
+            res_dict = storage.all()[f'User.{key_id}'].__dict__
+            self.assertEqual("attr_value", res_dict['attr_name'])
+
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("create State"))
+            key_id = f.getvalue().strip()
+            cmdin = f'State.update({key_id}, attr_name, attr_value)'
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd(cmdin))
+            res_dict = storage.all()[f'State.{key_id}'].__dict__
+            self.assertEqual("attr_value", res_dict['attr_name'])
+
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("create City"))
+            key_id = f.getvalue().strip()
+            cmdin = f'City.update({key_id}, attr_name, attr_value)'
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd(cmdin))
+            res_dict = storage.all()[f'City.{key_id}'].__dict__
+            self.assertEqual("attr_value", res_dict['attr_name'])
+
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("create Amenity"))
+            key_id = f.getvalue().strip()
+            cmdin = f'Amenity.update({key_id}, attr_name, attr_value)'
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd(cmdin))
+            res_dict = storage.all()[f'Amenity.{key_id}'].__dict__
+            self.assertEqual("attr_value", res_dict['attr_name'])
+
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("create Place"))
+            key_id = f.getvalue().strip()
+            cmdin = f'Place.update({key_id}, attr_name, attr_value)'
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd(cmdin))
+            res_dict = storage.all()[f'Place.{key_id}'].__dict__
+            self.assertEqual("attr_value", res_dict['attr_name'])
+
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd("create Review"))
+            key_id = f.getvalue().strip()
+            cmdin = f'Review.update({key_id}, attr_name, attr_value)'
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.assertFalse(HBNBCommand().onecmd(cmdin))
+            res_dict = storage.all()[f'Review.{key_id}'].__dict__
+            self.assertEqual("attr_value", res_dict['attr_name'])
