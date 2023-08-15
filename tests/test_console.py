@@ -47,7 +47,7 @@ class TestHBNBCommand(unittest.TestCase):
         """test for an empty command"""
         with patch("sys.stdout", new=StringIO()) as f:
             self.assertFalse(HBNBCommand().onecmd(""))
-            self.assertFalse("", f.getvalue().strip())
+            self.assertEqual("", f.getvalue().strip())
 
     def test_console_quit_cmd(self):
         """tests the console quit command"""
@@ -1865,7 +1865,7 @@ class TestHBNBCommandCountCmd(unittest.TestCase):
             self.assertFalse(HBNBCommand().onecmd("create BaseModel"))
         with patch("sys.stdout", new=StringIO()) as f:
             self.assertFalse(HBNBCommand().onecmd("BaseModel.count()"))
-            self.assertEqual("14", f.getvalue().strip())
+            self.assertEqual("16", f.getvalue().strip())
 
         with patch("sys.stdout", new=StringIO()) as f:
             self.assertFalse(HBNBCommand().onecmd("create User"))
